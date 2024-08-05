@@ -1,13 +1,13 @@
-import { quote } from "shell-quote";
+import { quote } from 'shell-quote';
 
 export default {
-  "*.{ts,tsx}": (filenames) => {
+  '*.{ts,tsx}': (filenames) => {
     const escapedFileNames = filenames
       .map((filename) => `${quote([filename])}`)
-      .join(" ");
+      .join(' ');
     return [
       `prettier --write ${escapedFileNames}`,
-      `eslint --fix ${filenames.map((f) => `"${f}"`).join(" ")}`,
+      `eslint --fix ${filenames.map((f) => `"${f}"`).join(' ')}`,
       `git add ${escapedFileNames}`,
     ];
   },
